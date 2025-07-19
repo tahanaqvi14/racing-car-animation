@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Racing Car Lottie Background</title>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+    
+      <style>
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden;
+        }
+    
+        #lottie-background {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          z-index: -1;
+          pointer-events: none;
+          overflow: hidden;
+          background-color: black;
+          /* fallback color */
+        }
+    
+        #lottie-background svg {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover;
+          display: block;
+        }
+    
+        @media (max-width: 1060px) {
+          #lottie-background svg {
+    
+            /* 👈 Centered + Resized */
+    
+            width: 100% !important;
+            height: 100% !important;
+          }
+        }
+      </style>
+    </head>
+    
+    <body>
+    
+      <div id="lottie-background"></div>
+    
+      <script>
+        function loadResponsiveLottie() {
+          const container = document.getElementById('lottie-background');
+    
+          // Optional: destroy previous animation if already loaded
+          if (container.firstChild) {
+            container.innerHTML = ''; // Clear SVG content
+          }
+    
+          const screenWidth = window.innerWidth;
+          // aspectSetting = 'xMidYMid slice';
+          if (screenWidth <= 600) {
+            aspectSetting = 'xMidYMid slice'; // crop from left
+          } else if (screenWidth <= 900) {
+            aspectSetting = 'xMidYMid slice'; // center
+          } else {
+            aspectSetting = 'xMinYMid slice'; // crop from right
+          }
+    
+          lottie.loadAnimation({
+            container: container,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'Racing car updated.json',
+            rendererSettings: {
+              preserveAspectRatio: aspectSetting
+            }
+          });
+        }
+    
+        // Initial load
+        loadResponsiveLottie();
+    
+        // Optional: reload on resize (with debounce)
+        window.addEventListener('resize', () => {
+          clearTimeout(window.lottieResizeTimer);
+          window.lottieResizeTimer = setTimeout(() => {
+            loadResponsiveLottie();
+          }, 300);
+        });
+      </script>
+    
+    </body>
+    
+    </html> 
