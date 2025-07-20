@@ -1,101 +1,183 @@
 <!DOCTYPE html>
-    <html lang="en">
-    
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Racing Car Lottie Background</title>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
-    
-      <style>
-        html,
-        body {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          overflow: hidden;
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Racing Car Lottie Background</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=excon@1&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #lottie-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+      background-color: black;
+      /* fallback color */
+    }
+
+    #lottie-background svg {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 1060px) {
+      #lottie-background svg {
+
+        /* 👈 Centered + Resized */
+
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    .title-container {
+      text-align: center;
+      color: #ffcc33;
+      font-family: 'Excon ', sans-serif;
+      /* bug yellow */
+    }
+
+    .subtitle {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #fff3cc;
+      margin-top: 0.5rem;
+    }
+
+    .game-title {
+      font-size: 4rem;
+      /* Smaller on desktop */
+      font-weight: 800;
+    }
+
+
+    @media (max-width: 600px) {
+      .subtitle {
+        font-size: 1rem;
+      }
+
+
+      .game-title {
+        font-size: 2rem;
+      }
+
+      #bug-title img {
+        width: 30px;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 381px) {
+      .subtitle {
+        font-size: 0.5rem;
+      }
+    }
+
+    #bug-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    #bug-title img {
+      width: 50px;
+      height: auto;
+    }
+
+    .line {
+      height: 2px;
+      background: #ffcc33;
+      width: 50px;
+      display: inline-block;
+      margin: 0 1rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="lottie-background"></div>
+  <div class="title-container">
+    <div class="game-title">
+      <div id="bug-title">
+        <div>BUG</div>
+        <img src="./bug.svg" alt="" srcset="">
+        <div>WARS</div>
+      </div>
+      <!-- BUG <span class="bug-icon"></span> WARS -->
+    </div>
+    <div class="subtitle">
+      <span class="line"></span>
+      CODE RACERS
+      <span class="line"></span>
+    </div>
+  </div>
+
+  <script>
+    function loadResponsiveLottie() {
+      const container = document.getElementById('lottie-background');
+
+      // Optional: destroy previous animation if already loaded
+      if (container.firstChild) {
+        container.innerHTML = ''; // Clear SVG content
+      }
+
+      const screenWidth = window.innerWidth;
+      // aspectSetting = 'xMidYMid slice';
+      if (screenWidth <= 600) {
+        aspectSetting = 'xMidYMid slice'; // crop from left
+      } else if (screenWidth <= 900) {
+        aspectSetting = 'xMidYMid slice'; // center
+      } else {
+        aspectSetting = 'xMinYMid slice'; // crop from right
+      }
+
+      lottie.loadAnimation({
+        container: container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'Racing car updated.json',
+        rendererSettings: {
+          preserveAspectRatio: aspectSetting
         }
-    
-        #lottie-background {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          z-index: -1;
-          pointer-events: none;
-          overflow: hidden;
-          background-color: black;
-          /* fallback color */
-        }
-    
-        #lottie-background svg {
-          width: 100% !important;
-          height: 100% !important;
-          object-fit: cover;
-          display: block;
-        }
-    
-        @media (max-width: 1060px) {
-          #lottie-background svg {
-    
-            /* 👈 Centered + Resized */
-    
-            width: 100% !important;
-            height: 100% !important;
-          }
-        }
-      </style>
-    </head>
-    
-    <body>
-    
-      <div id="lottie-background"></div>
-    
-      <script>
-        function loadResponsiveLottie() {
-          const container = document.getElementById('lottie-background');
-    
-          // Optional: destroy previous animation if already loaded
-          if (container.firstChild) {
-            container.innerHTML = ''; // Clear SVG content
-          }
-    
-          const screenWidth = window.innerWidth;
-          // aspectSetting = 'xMidYMid slice';
-          if (screenWidth <= 600) {
-            aspectSetting = 'xMidYMid slice'; // crop from left
-          } else if (screenWidth <= 900) {
-            aspectSetting = 'xMidYMid slice'; // center
-          } else {
-            aspectSetting = 'xMinYMid slice'; // crop from right
-          }
-    
-          lottie.loadAnimation({
-            container: container,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'Racing car updated.json',
-            rendererSettings: {
-              preserveAspectRatio: aspectSetting
-            }
-          });
-        }
-    
-        // Initial load
+      });
+    }
+
+    // Initial load
+    loadResponsiveLottie();
+
+    // Optional: reload on resize (with debounce)
+    window.addEventListener('resize', () => {
+      clearTimeout(window.lottieResizeTimer);
+      window.lottieResizeTimer = setTimeout(() => {
         loadResponsiveLottie();
-    
-        // Optional: reload on resize (with debounce)
-        window.addEventListener('resize', () => {
-          clearTimeout(window.lottieResizeTimer);
-          window.lottieResizeTimer = setTimeout(() => {
-            loadResponsiveLottie();
-          }, 300);
-        });
-      </script>
-    
-    </body>
-    
-    </html> 
+      }, 300);
+    });
+  </script>
+
+</body>
+
+</html>

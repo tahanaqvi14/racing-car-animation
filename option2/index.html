@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main Menu Banner</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .pink-bg {
+            background-color: #e91e63;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 22px 60px;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            position: relative;
+            /* z-index: 1; */
+            text-align: center;
+            
+        }
+
+        /* .pink-bg {
+            background-color: #e91e63;
+            transform: skewX(-20deg);
+
+            height: 80px;
+            width: 350px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        } */
+
+        .black-banner {
+            background-color: #2b2b2b;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 22px 60px;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner-container">
+        <div class="pink-bg"></div>
+        <div class="black-banner">MAIN MENU</div>
+    </div>
+</body>
+
+</html>
