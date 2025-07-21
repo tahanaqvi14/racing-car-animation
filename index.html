@@ -1,31 +1,57 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Bug Wars Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Racing Car Lottie Background</title>
   <link href="https://api.fontshare.com/v2/css?f[]=excon@1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
 
   <style>
+    html,
     body {
-      background-color: #c68c4c;
-      /* desert tone */
       margin: 0;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      /* align-items: center; */
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #lottie-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
       height: 100vh;
-      font-family: 'Excon ', sans-serif;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+      background-color: black;
+      /* fallback color */
+    }
+
+    #lottie-background svg {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 1060px) {
+      #lottie-background svg {
+
+        /* 👈 Centered + Resized */
+
+        width: 100% !important;
+        height: 100% !important;
+      }
     }
 
     .title-container {
       text-align: center;
       color: #ffcc33;
+      font-family: 'Excon ', sans-serif;
       /* bug yellow */
     }
 
@@ -49,7 +75,7 @@
         font-size: 1rem;
       }
 
-      
+
       .game-title {
         font-size: 2rem;
       }
@@ -79,20 +105,6 @@
       height: auto;
     }
 
-    /* .bug-icon {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background-color: #ffcc33;
-      mask: url('./bug.svg') no-repeat center;
-      -webkit-mask: url('./bug.svg') no-repeat center;
-      mask-size: contain;
-      -webkit-mask-size: contain;
-      margin: 0 0.5rem;
-      vertical-align: middle;
-    } */
-
-
     .line {
       height: 2px;
       background: #ffcc33;
@@ -101,10 +113,55 @@
       margin: 0 1rem;
       vertical-align: middle;
     }
+
+    .banner-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .pink-bg {
+      background-color: #654321;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding: 22px 60px;
+      clip-path: polygon(0 11%, 93% 0, 89% 66%, 9% 54%);
+      height: 80px;
+      width: 150px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .black-banner {
+      background-color: #2b2b2b;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding: 22px 60px;
+      position: relative;
+      height: 24px;
+      width: 150px;
+      z-index: 1;
+      text-align: center;
+      clip-path: polygon(10% 11%, 90% 20%, 100% 90%, 0 100%);
+    }
+
+    #leftside{
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
   </style>
 </head>
 
 <body>
+
+  <div id="lottie-background"></div>
   <div class="title-container">
     <div class="game-title">
       <div id="bug-title">
@@ -120,6 +177,64 @@
       <span class="line"></span>
     </div>
   </div>
+  <span id="leftside">
+    <div class="banner-container">
+      <div class="pink-bg"></div>
+      <div class="black-banner">Play online</div>
+    </div>
+    <div class="banner-container">
+      <div class="pink-bg"></div>
+      <div class="black-banner">Play offline</div>
+    </div>
+    <div class="banner-container">
+      <div class="pink-bg"></div>
+      <div class="black-banner">Leaderboard</div>
+    </div>
+  </span>
+
+  <script>
+    function loadResponsiveLottie() {
+      const container = document.getElementById('lottie-background');
+
+      // Optional: destroy previous animation if already loaded
+      if (container.firstChild) {
+        container.innerHTML = ''; // Clear SVG content
+      }
+
+      const screenWidth = window.innerWidth;
+      // aspectSetting = 'xMidYMid slice';
+      if (screenWidth <= 600) {
+        aspectSetting = 'xMidYMid slice'; // crop from left
+      } else if (screenWidth <= 900) {
+        aspectSetting = 'xMidYMid slice'; // center
+      } else {
+        aspectSetting = 'xMinYMid slice'; // crop from right
+      }
+
+      lottie.loadAnimation({
+        container: container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'Racing car updated.json',
+        rendererSettings: {
+          preserveAspectRatio: aspectSetting
+        }
+      });
+    }
+
+    // Initial load
+    loadResponsiveLottie();
+
+    // Optional: reload on resize (with debounce)
+    window.addEventListener('resize', () => {
+      clearTimeout(window.lottieResizeTimer);
+      window.lottieResizeTimer = setTimeout(() => {
+        loadResponsiveLottie();
+      }, 300);
+    });
+  </script>
+
 </body>
 
 </html>

@@ -113,6 +113,49 @@
       margin: 0 1rem;
       vertical-align: middle;
     }
+
+    .banner-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .pink-bg {
+      background-color: #654321;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding: 22px 60px;
+      clip-path: polygon(0 11%, 93% 0, 89% 66%, 9% 54%);
+      height: 80px;
+      width: 150px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .black-banner {
+      background-color: #2b2b2b;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding: 22px 60px;
+      position: relative;
+      height: 24px;
+      width: 150px;
+      z-index: 1;
+      text-align: center;
+      clip-path: polygon(10% 11%, 90% 20%, 100% 90%, 0 100%);
+    }
+
+    #leftside{
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
   </style>
 </head>
 
@@ -134,6 +177,20 @@
       <span class="line"></span>
     </div>
   </div>
+  <span id="leftside">
+    <div class="banner-container">
+      <div class="pink-bg"></div>
+      <div class="black-banner">Play online</div>
+    </div>
+    <div class="banner-container">
+      <div class="pink-bg"></div>
+      <div class="black-banner">MAIN MENU</div>
+    </div>
+    <div class="banner-container">
+      <div class="pink-bg"></div>
+      <div class="black-banner">Leaderboard</div>
+    </div>
+  </span>
 
   <script>
     function loadResponsiveLottie() {
